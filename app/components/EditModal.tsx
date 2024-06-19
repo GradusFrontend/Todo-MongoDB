@@ -9,13 +9,13 @@ interface EditModal {
     id: string
 }
 
-export default function EditModal({title, desc, id}: EditModal) {
-	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+export default function EditModal({ title, desc, id }: EditModal) {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
     const onSubmit = (data: any) => {
-		// axios.post('/api/todos', data)
-		// 	.then(() => setIsChanged(!isChanged))
-	}
+        // axios.post('/api/todos', data)
+        // 	.then(() => setIsChanged(!isChanged))
+    }
     return (
         <dialog open={true} className='fixed top-1/2 left-1/2 translate-x-[-70%] translate-y-[-50%] bg-[#e1e1e1] rounded-2xl p-8 shadow-lg shadow-[#00000065]'>
             <div>
@@ -23,8 +23,8 @@ export default function EditModal({title, desc, id}: EditModal) {
                 <div>
                     <form name='EditModal' className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
                         <div className='flex gap-2'>
-                        <input {...register('name', { required: true })} className={`${errors.title ? '!outline-red-500 !border-red-500' : ''} p-2 rounded-md border border-[#c4c4c4] `} placeholder="Загаловок" type="text" />
-						<input {...register('desc', { required: true })} className={`${errors.description ? '!outline-red-500 !border-red-500' : ''} p-2 rounded-md border border-[#c4c4c4] `} placeholder="Описание" type="text" />
+                            <input {...register('name', { required: true })} className={`${errors.title ? '!outline-red-500 !border-red-500' : ''} p-2 rounded-md border border-[#c4c4c4] `} placeholder="Загаловок" type="text" defaultValue={title} />
+                            <input {...register('desc', { required: true })} className={`${errors.description ? '!outline-red-500 !border-red-500' : ''} p-2 rounded-md border border-[#c4c4c4] `} placeholder="Описание" type="text" defaultValue={desc} />
                         </div>
                         <button type='submit' className='px-3 py-2 rounded-md border-0 bg-blue-500 text-white'>Edit</button>
                     </form>
