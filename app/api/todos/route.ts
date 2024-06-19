@@ -45,20 +45,21 @@ export async function DELETE(req: NextRequest) {
     }
 }
 
-// export async function PUT(req: NextRequest) {
-//     await dbConnect();
 
-//     try {
-
-//         const id = req.nextUrl.searchParams.get("id")
-//         const {nameEdit, descEdit} = req.body
-
-//         await todos.findByIdAndUpdate(id, {name: nameEdit, desc: descEdit});
-
-//         return NextResponse.json({ massage: "Todo deleted" }, {
-//             status: 200
-//         })
-//     } catch (e) {
-//         return NextResponse.json({ message: e }, { status: 500 })
-//     }
-// }
+export async function PATCH(req: NextRequest) {
+    await dbConnect();
+  
+    try {
+      const id = req.nextUrl.searchParams.get("id")
+      const body = await req.json()
+           
+      const updated = await todos.findByIdAndUpdate(id, { ...body });
+  
+      return NextResponse.json({ massage: "Todo updated", updated}, {
+        status: 200
+      })
+    } catch (e) {
+      return NextResponse.json({ message: e }, { status: 500 })
+    }
+  }
+  

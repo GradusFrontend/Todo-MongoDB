@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import Todo from './components/Todo';
+import EditModal from './components/EditModal';
 
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
 		axios.post('/api/todos', data)
 			.then(() => setIsChanged(!isChanged))
 	}
-	
+
 	return (
 		<main className='w-[95%] max-w-[1440px] my-0 mx-auto mt-10'>
 			<h1 className='text-center text-4xl font-semibold text-teal-600'>ToDo With MongoDB</h1>
@@ -45,7 +46,7 @@ export default function Home() {
 
 			<section className='w-full grid grid-cols-3 gap-3 mt-10'>
 				{
-					todos.map((item: any, idx) => (						
+					todos.map((item: any, idx) => (
 						<Todo
 							name={item?.name}
 							desc={item?.desc}
@@ -59,6 +60,7 @@ export default function Home() {
 				}
 			</section>
 
+			<EditModal />
 		</main>
 	);
 }

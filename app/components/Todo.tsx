@@ -18,10 +18,9 @@ function Todo({ name, desc, _id, handleClick }: Todo) {
             onDoubleClick={() => {
                 console.log('dbl');
                 
-                axios.delete(`http://localhost:3000/api/todos/${_id}`)
+                axios.delete(`http://localhost:3000/api/todos?id=${_id}`)
                     .then((res) => {
-                        console.log(res);
-                        
+                        handleClick()
                     })
 
             }}
